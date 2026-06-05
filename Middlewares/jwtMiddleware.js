@@ -2,10 +2,10 @@ const jwt = require('jsonwebtoken')
 const jwtMiddleware = (req, res, next) => {
     try {
         const token = req.headers['authorization'].split(' ')[1]
-        console.log('inside jwt');
+        // console.log('inside jwt');
         if (token) {
             const jwtResponse = jwt.verify(token, process.env.JWT_SECRET)
-            req.payload = jwtResponse.userId
+            req.payload = jwtResponse
             next()
            
         } else {

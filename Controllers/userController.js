@@ -26,9 +26,10 @@ exports.loginController = async (req, res) => {
         if (existingUser) {
             //  token generate
             const token = jwt.sign({
-                userId: existingUser._id
+                userId: existingUser._id,
+                role: existingUser.role
             }, process.env.JWT_SECRET)
-            res.status(200).json({ token, existingUser })
+            res.status(200).json({ token,existingUser,role:existingUser.role})
         } else {
             res.status(406).json('Invalid email / password')
         }
